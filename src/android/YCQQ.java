@@ -408,22 +408,27 @@ public class YCQQ extends CordovaPlugin {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        mTencent.onActivityResultData(requestCode,resultCode,intent,loginListener);
-        if (requestCode == Constants.REQUEST_API) {
-            if (resultCode == Constants.REQUEST_LOGIN) {
-                Tencent.handleResultData(intent, loginListener);
-            }
-        }
-        if (requestCode == Constants.REQUEST_QQ_SHARE) {
-            if (resultCode == Constants.ACTIVITY_OK) {
-                Tencent.handleResultData(intent, qqShareListener);
-            }
-        }
-        if (requestCode == Constants.REQUEST_QZONE_SHARE) {
-            if (resultCode == Constants.ACTIVITY_OK) {
-                Tencent.handleResultData(intent, qZoneShareListener);
-            }
-        }
+		try{
+			mTencent.onActivityResultData(requestCode,resultCode,intent,loginListener);
+			if (requestCode == Constants.REQUEST_API) {
+				if (resultCode == Constants.REQUEST_LOGIN) {
+					Tencent.handleResultData(intent, loginListener);
+				}
+			}
+			if (requestCode == Constants.REQUEST_QQ_SHARE) {
+				if (resultCode == Constants.ACTIVITY_OK) {
+					Tencent.handleResultData(intent, qqShareListener);
+				}
+			}
+			if (requestCode == Constants.REQUEST_QZONE_SHARE) {
+				if (resultCode == Constants.ACTIVITY_OK) {
+					Tencent.handleResultData(intent, qZoneShareListener);
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();			
+		}
+
         super.onActivityResult(requestCode, resultCode, intent);
     }
 
